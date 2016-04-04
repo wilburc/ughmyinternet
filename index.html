@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Skeleton: Responsive CSS Boilerplate</title>
+  <title>ugh, my internet</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -15,17 +15,22 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+  <script src="https://use.typekit.net/twe1tle.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="../../dist/css/normalize.css">
-  <link rel="stylesheet" href="../../dist/css/skeleton.css">
-  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="/Skeleton-2.0.4 4/css/normalize.css">
+  <link rel="stylesheet" href="/Skeleton-2.0.4 4/css/skeleton.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/d3.css">
+
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -38,19 +43,76 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
   <div class='section intro'> 
-  <!-- who what where when why -->
+  <!-- 1. who what where when why -->
+    <div class='container'>
+      
+      <div class='text-centered'>
+        <h1>ugh, my internet</h1>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 
+        </p>
+      </div>
+      
+      <div class='row'>
+        <div class='one-third column stat'>
+          <h2 class='stat-value message-count'> 
+            102,635
+          </h2>
+          <h5 class='stat-description'>
+            Messages
+          </h5>
+        </div>
+        <div class='one-third column stat'>
+          <h2 class='stat-value day-count'> 
+            353
+          </h2>
+          <h5 class='stat-description'>
+            Days
+          </h5>
+        </div>
+        <div class='one-third column stat'>
+          <h2 class='stat-value member-count'> 
+            3
+          </h2>
+          <h5 class='stat-description'>
+            Members
+          </h5>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class='section year'>
-  <!-- during the year? who did how many? -->
+  <!-- 2. during the year? who did how many? -->
+    <div class='container'>
+      <div class='text-centered'>
+        <h2>
+          What does the distribution look like?
+        </h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 
+        </p>
+      </div>
+     </div>
+     <div class='container'>
+      <label class="example-send-yourself-copy u-pull-right">
+        <input type="checkbox" name='v' checked>
+        <span class="label-body">Show individual distributions</span>
+      </label>
+    </div>
+    <div id='distribution-graph' class='graph'>
+    </div>
+    <script type="text/javascript" src="distribution-graph.js">
+    </script>
+
+   
   </div>
 
   <div class='section day'>
-  <!-- what’s it like during the day? am vs pm?-->
+  <!-- 3. what’s it like during the day? am vs pm?-->
   
   </div>
 
   <div class='section words'>
+  <!-- 4. what’s the chat like? what words are used the most? trends? -->
   </div>
 
 

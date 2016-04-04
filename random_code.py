@@ -92,13 +92,15 @@ with open('newfile.csv', 'rb') as infile, open('datecounts_all.csv', 'wb') as ou
 	thao_counts = {}
 	wilb_counts = {}
 	josh_counts = {}
+	total_counts = {}
 	writer = csv.writer(outfile)
-	writer.writerow(['date','wilb', 'thao', 'josh'])
+	writer.writerow(['date','wilb', 'thao', 'josh', 'total'])
 	for row in csv.reader(infile):
 		if row[1] != 'date':
+			datez = row[1].split(" ")
+			datez = datez[0]
 			if row[0] == 'Thao Nguyen':
-				datez = row[1].split(" ")
-				datez = datez[0]
+				
 				# if int(datez.split("/")[0]) > 10:
 				# 	datez = "0" + datez
 				if datez in thao_counts:
@@ -106,8 +108,8 @@ with open('newfile.csv', 'rb') as infile, open('datecounts_all.csv', 'wb') as ou
 				else:
 					thao_counts[datez] = 1
 			elif row[0] == 'Wilbur Chen':
-				datez = row[1].split(" ")
-				datez = datez[0]
+				
+		
 				# if int(datez.split("/")[0]) > 10:
 				# 	datez = "0" + datez
 				if datez in wilb_counts:
@@ -115,14 +117,19 @@ with open('newfile.csv', 'rb') as infile, open('datecounts_all.csv', 'wb') as ou
 				else:
 					wilb_counts[datez] = 1
 			else:
-				datez = row[1].split(" ")
-				datez = datez[0]
+				
+			
 				# if int(datez.split("/")[0]) > 10:
 				# 	datez = "0" + datez
 				if datez in josh_counts:
 					josh_counts[datez] += 1
 				else:
 					josh_counts[datez] = 1
+			if datez in total_counts:
+				total_counts[datez] += 1
+			else:
+				total_counts[datez] = 1
+
 		else:
 			pass
 	for key, value in wilb_counts.items():
