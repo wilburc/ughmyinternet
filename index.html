@@ -93,10 +93,11 @@
       </div>
      </div>
      <div class='container'>
-      <label class="example-send-yourself-copy u-pull-right">
-        <input type="checkbox" name='v' checked>
-        <span class="label-body">Show individual distributions</span>
-      </label>
+      <select class="four columns u-pull-right" id="graphSelect" onchange=updateData();>
+        <option value="Option 1">Individual Distributions</option>
+        <option value="Option 2">Total</option>
+        <option value="Option 3">Individual + Total</option>
+      </select>
     </div>
     <div id='distribution-graph' class='graph'>
     </div>

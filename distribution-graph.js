@@ -31,7 +31,7 @@
   var svg = d3.select("#distribution-graph").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
-    .append("g")
+      .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   d3.select("#distribution-graph").attr("align","center");
@@ -57,7 +57,7 @@
         })
       };
     });
-
+    console.log(members);
     x.domain(d3.extent(data, function(d) { return d.date; }));
 
     y.domain([
@@ -80,17 +80,17 @@
         .style("text-anchor", "end")
         .text("Messages");
 
-    var city = svg.selectAll(".city")
+    var member = svg.selectAll(".member")
         .data(members)
         .enter().append("g")
-        .attr("class", "city");
+        .attr("class", "member");
 
-    city.append("path")
+    member.append("path")
         .attr("class", "line")
         .attr("d", function(d) { return line(d.values); })
         .style("stroke", function(d) { return color(d.name); });
 
-    city.append("text")
+    member.append("text")
         .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
         .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.messages) + ")"; })
         .attr("x", 6)
@@ -98,5 +98,68 @@
         .text(function(d) { return d.name; });
   });
 
+function updateData() {
+  // svg = d3.select("#distribution-graph").transition();
+  //     member.exit().remove();
+  d3.csv(filename2, function(error, data) {
+    if (error) throw error;
+    color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date";}));
+    data.forEach(function(d) {
+      d.date = parseDate(d.date);
+
+    });
+    var members = color.domain().map(function(name) {
+      return {
+        name: name,
+        values: data.map(function(d) {
+          return {date: d.date, messages: +d[name]};
+        })
+
+      }
+    });
+    x.domain(d3.extent(data, function(d) { return d.date;}));
+    y.domain([
+      d3.min(members, function(c) { return d3.min(c.values, function(v) { return v.messages; }); }),
+      d3.max(members, function(c) { return d3.max(c.values, function(v) { return v.messages; }); })
+      ]);
+
+    var svg = d3.select("#distribution-graph").transition();
+      svg.select(".x.axis")
+        .duration(750)
+        .call(xAxis)
+      svg.select(".y.axis")
+        .duration(750)
+        .call(yAxis);
+    
+    var svg = d3.select("#distribution-graph")
+      // .attr("width", width + margin.left + margin.right)
+      // .attr("height", height + margin.top + margin.bottom)
+      // .append("g")
+      // .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    // var member = svg.selectAll(".member")
+    //     .data(members)
+    //     .enter().append("g")
+    //     .attr("class", "member");
+
+    console.log(svg.select(".member"));
+
+    var member = svg.selectAll(".member")
+      .data(members);
+      // .attr("class", "member");
+    console.log(member);
+    member.enter()
+    member.append("path")
+      .attr("class", "line")
+      .attr("d", function(d) { return line(d.values); })
+      .style("stroke", function(d) { return color(d.name); });
+    member.append("text")
+      .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+      .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.messages) + ")"; })
+      .attr("x", 6)
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name; });
+    member.exit().remove();
+}
+)};
 
 
