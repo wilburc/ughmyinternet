@@ -93,10 +93,10 @@
       </div>
      </div>
      <div class='container'>
-      <select class="four columns u-pull-right" id="graphSelect" onchange=updateData();>
-        <option value="Option 1">Individual Distributions</option>
-        <option value="Option 2">Total</option>
-        <option value="Option 3">Individual + Total</option>
+      <select class="four columns u-pull-right" id="graphSelect" onchange=updateData(this.value);>
+        <option value="individual">Individual Distributions</option>
+        <option value="total">Total</option>
+        <option value="all">Individual + Total</option>
       </select>
     </div>
     <div id='distribution-graph' class='graph'>

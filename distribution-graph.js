@@ -36,13 +36,11 @@
 
   d3.select("#distribution-graph").attr("align","center");
 
-  var filename1 = 'files/datecounts_all.csv'
-  var filename2 = 'files/datecounts_totals.csv'
+  var filename3 = 'files/datecounts_test.csv'
 
-  d3.csv(filename1, function(error, data) {
+  d3.csv(filename3, function(error, data) {
     if (error) throw error;
-
-    color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+    color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date" && key !== "total"; }));
 
     data.forEach(function(d) {
 
@@ -84,7 +82,7 @@
         .data(members)
         .enter().append("g")
         .attr("class", "member");
-    console.log(member);
+
     member.append("path")
         .attr("class", "line")
         .attr("d", function(d) { return line(d.values); })
@@ -98,12 +96,15 @@
         .text(function(d) { return d.name; });
   });
 
-function updateData() {
+function updateData(value) {
   // svg = d3.select("#distribution-graph").transition();
   //     member.exit().remove();
-  d3.csv(filename2, function(error, data) {
+  d3.csv(filename3, function(error, data) {
     if (error) throw error;
+    
     color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date";}));
+
+
     data.forEach(function(d) {
       d.date = parseDate(d.date);
 
@@ -117,6 +118,13 @@ function updateData() {
 
       }
     });
+    console.log(members);
+    if (value == 'individual') {
+      members = members.filter(function(key) { return key.name !== "total";});
+    } else if (value == 'total') {
+      members = members.filter(function(key) { return key.name == "total";});
+    } 
+    console.log(members);
     x.domain(d3.extent(data, function(d) { return d.date;}));
     y.domain([
       d3.min(members, function(c) { return d3.min(c.values, function(v) { return v.messages; }); }),
@@ -130,32 +138,34 @@ function updateData() {
       svg.select(".y.axis")
         .duration(750)
         .call(yAxis);
-    var svg = d3.select("svg");
 
-  
-    console.log(members);
+
+    svg = d3.select("#distribution-graph").selectAll("svg").select("g");
+    svg.selectAll("g.member").remove();
     var member = svg.selectAll(".member")
       .data(members);
-    console.log(member);
-    var memberEnter = member.enter()
+
+    member.enter()
       .append("g")
       .attr("class", "member");
       // .attr("class", "member");
     // member.enter()
     //   .append("g")
     //   .attr("class", "member");
-    console.log(memberEnter);
-    memberEnter.append("path")
+    
+    member.append("path")
       .attr("class", "line")
       .attr("d", function(d) { return line(d.values); })
       .style("stroke", function(d) { return color(d.name); });
-    memberEnter.append("text")
+    member.append("text")
       .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
       .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.messages) + ")"; })
       .attr("x", 6)
       .attr("dy", ".35em")
       .text(function(d) { return d.name; });
-    
+ 
+
+
     member.exit().remove();
 
 } 
