@@ -80,11 +80,11 @@
         .style("text-anchor", "end")
         .text("Messages");
 
-    var member = svg.selectAll(".member")
+    member = svg.selectAll(".member")
         .data(members)
         .enter().append("g")
         .attr("class", "member");
-
+    console.log(member);
     member.append("path")
         .attr("class", "line")
         .attr("d", function(d) { return line(d.values); })
@@ -124,42 +124,41 @@ function updateData() {
       ]);
 
     var svg = d3.select("#distribution-graph").transition();
-      svg.select(".x.axis")
-        .duration(750)
-        .call(xAxis)
+      // svg.select(".x.axis")
+      //   .duration(750)
+      //   .call(xAxis)
       svg.select(".y.axis")
         .duration(750)
         .call(yAxis);
-    
-    var svg = d3.select("#distribution-graph")
-      // .attr("width", width + margin.left + margin.right)
-      // .attr("height", height + margin.top + margin.bottom)
-      // .append("g")
-      // .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    // var member = svg.selectAll(".member")
-    //     .data(members)
-    //     .enter().append("g")
-    //     .attr("class", "member");
+    var svg = d3.select("svg");
 
-    console.log(svg.select(".member"));
-
+  
+    console.log(members);
     var member = svg.selectAll(".member")
       .data(members);
-      // .attr("class", "member");
     console.log(member);
-    member.enter()
-    member.append("path")
+    var memberEnter = member.enter()
+      .append("g")
+      .attr("class", "member");
+      // .attr("class", "member");
+    // member.enter()
+    //   .append("g")
+    //   .attr("class", "member");
+    console.log(memberEnter);
+    memberEnter.append("path")
       .attr("class", "line")
       .attr("d", function(d) { return line(d.values); })
       .style("stroke", function(d) { return color(d.name); });
-    member.append("text")
+    memberEnter.append("text")
       .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
       .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.messages) + ")"; })
       .attr("x", 6)
       .attr("dy", ".35em")
       .text(function(d) { return d.name; });
+    
     member.exit().remove();
-}
+
+} 
 )};
 
 
