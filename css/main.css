@@ -9,3 +9,8 @@
 	padding:30px;
 
 }
+
+
+.stat-value, .stat-description{
+	text-align:center;
+}
