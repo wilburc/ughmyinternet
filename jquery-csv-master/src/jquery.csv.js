@@ -976,32 +976,28 @@ RegExp.escape= function(s) {
 
 
 
-function getMessageCount(csv){
+function getData(csv){
   var messageCount = 0
   for (i=1;i < csv.length; i++){
-    messageCount += Number(csv[i][4])
+     messageCount += Number(csv[i][4])
   }
-  console.log(messageCount);
-  $('.message-count').html(messageCount.toString());
-}
+  $('.message-count').html(messageCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 
-function getDays(csv){
   oneDay = 24*60*60*1000;
   startDate = new Date(csv[1][0]);
   endDate = new Date(csv[(csv.length - 1)][0]);
   var diffDays = Math.abs((startDate.getTime() - endDate.getTime())/(oneDay));
-  console.log(Math.round(diffDays));
   days = Math.round(diffDays);
-  $('.day-count').html(days.toString());
+  $('.day-count').html(days.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 
-}
-
-function getMemberCount(csv){
   memberCount = (csv[0].length) - 2
-  console.log(memberCount);
   $('.member-count').html(memberCount.toString());
 
+  daily_average = Math.round(messageCount/days);
+  $('.daily-average').html(daily_average.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 }
+
+
 //parse csv
 $.ajax({
     url: "/jquery-csv-master/src/datecounts_test.csv",
@@ -1012,10 +1008,12 @@ $.ajax({
     },
     dataType: "text",
     complete: function () {
-      console.log(data[0]);
-      getMessageCount(data);
-      getDays(data);
-      getMemberCount(data);
+      getData(data);
+      // getMessageCount(data);
+      // getDays(data);
+      // getMemberCount(data);
+      // daily_average = messageCount/days;
+      // $('.daily-average').html(daily_average.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 
       }
 });
