@@ -121,16 +121,17 @@ are based on 10px sizing. So basically 1.5rem = 15px :) */
 html {
   font-size: 62.5%; }
 body {
-  font-size: 2em; /* currently ems cause chrome bug misinterpreting rems on body element */
-  line-height: 1.6;
+  font-size: 1.8em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.8;
   font-weight: 300;
-  font-family: "museo-sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "usual", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222; }
 
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 h1, h2, h3, h4, h5, h6 {
+  /*font-family:"ff-tisa-sans-web-pro", "helveticaneue", sans-serif;*/
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: 300; }
@@ -143,10 +144,10 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
 
 /* Larger than phablet */
 @media (min-width: 550px) {
-  h1 { font-size: 5.0rem; }
-  h2 { font-size: 4.2rem; }
-  h3 { font-size: 3.6rem; }
-  h4 { font-size: 3.0rem; }
+  h1 { font-size: 4.882rem; }
+  h2 { font-size: 3.906rem; }
+  h3 { font-size: 3.126rem; }
+  h4 { font-size: 2.5rem; }
   h5 { font-size: 2.4rem; }
   h6 { font-size: 1.5rem; }
 }
