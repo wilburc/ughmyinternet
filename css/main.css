@@ -11,6 +11,24 @@
 }
 
 
+.stat-row{
+	padding:10px 0;
+}
+.stat{
+	padding:10px 0;
+}
 .stat-value, .stat-description{
 	text-align:center;
 }
+
+.stat-value{
+	font-size: 4.0rem;
+	line-height:1;
+	text-align:center;
+	/*display:inline-block;*/
+
+}
+.stat-description{
+	margin-top:0;
+}
+

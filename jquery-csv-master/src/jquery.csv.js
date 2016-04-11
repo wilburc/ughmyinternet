@@ -995,6 +995,10 @@ function getData(csv){
 
   daily_average = Math.round(messageCount/days);
   $('.daily-average').html(daily_average.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+
+  endDate = ((endDate.getMonth() + 1) + '/' + endDate.getDate() + '/' +  endDate.getFullYear());
+
+  $('.last-updated').html(endDate.toString());
 }
 
 
