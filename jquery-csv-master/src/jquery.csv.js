@@ -979,7 +979,7 @@ RegExp.escape= function(s) {
 function getData(csv){
   var messageCount = 0
   for (i=1;i < csv.length; i++){
-     messageCount += Number(csv[i][4])
+     messageCount += Number(csv[i][1])
   }
   $('.message-count').html(messageCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 
@@ -1004,7 +1004,8 @@ function getData(csv){
 
 //parse csv
 $.ajax({
-    url: "/jquery-csv-master/src/datecounts_test.csv",
+    // url: "/jquery-csv-master/src/datecounts_test.csv",
+    url: "../../files/datecounts.csv",
     async: false,
     success: function (csvd) {
         data = $.csv.toArrays(csvd);

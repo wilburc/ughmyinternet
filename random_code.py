@@ -18,23 +18,22 @@ time = date[5].split(':')
 import time
 
 for date in dates:
-	day_of_week = ""
-	month = ""
-	day = ""
-	year = ""
-
-	hour = 
-	minute
-	date = date.split(' ')
-		day_of_week = date[0][0:3]
-		month = date[1][0:3]
-		year = date[3][-2]
-		time = date[5].split(':')
-		if time[1][-2:] == 'pm':
-			hour = int(time[0]) + 12
-		else:
-			hour = int(time[0])
-	date = time.strptime(hour + " " + minute + " " + day_of_week + " " + month + " " + year, "%H %m %a %b %y ")
+day_of_week = ""
+month = ""
+day = ""
+year = ""
+hour = ""
+minute = ""
+date = date.split(' ')
+day_of_week = date[0][0:3]
+month = date[1][0:3]
+year = date[3][-2]
+time = date[5].split(':')
+if time[1][-2:] == 'pm':
+	hour = int(time[0]) + 12
+else:
+	hour = int(time[0])
+date = time.strptime(hour + " " + minute + " " + day_of_week + " " + month + " " + year, "%H %m %a %b %y ")
 
 Fri Jul  1 8 
 
@@ -49,7 +48,6 @@ col_b = list(data.b)
 col_c = list(data.c)
 
 def timeify(tstamp):
-	
 	if tstamp != 'date':
 		day_of_week = ""
 		month = ""
@@ -75,7 +73,6 @@ def timeify(tstamp):
 		# print day_of_week, month, day, year, hour, minute
 		tstamp = datetime.strptime(str(str(hour) + " " + str(minute) + " " + str(day_of_week) + " " + str(day) + " " + str(month) + " " + str(year)), "%H %M %a %d %b %y")
 		# print thing
-
 	else:
 		pass
 	return tstamp
@@ -151,7 +148,8 @@ with open('newfile.csv', 'rb') as infile, open('daytrend.csv', 'wb') as outfile:
 	writer = csv.writer(outfile)
 	writer.writerow(['time','count'])
 	for row in csv.reader(infile):
-		if row[
+		if row['date'] = (0,0,0,0)
+		
 
 
 

@@ -5,7 +5,7 @@
       height = 500;
    
   // Parse the date / time
-  var parseDate = d3.time.format("%m/%d/%y").parse;
+  var parseDate = d3.time.format("%m/%d/%Y").parse;
    
   var x = d3.time.scale()
       .range([0, width]);
@@ -36,9 +36,9 @@
 
   d3.select("#distribution-graph").attr("align","center");
 
-  var filename3 = 'files/datecounts_test.csv'
+  var filename = 'files/datecounts.csv'
 
-  d3.csv(filename3, function(error, data) {
+  d3.csv(filename, function(error, data) {
     if (error) throw error;
     color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date" && key !== "total"; }));
 
@@ -83,6 +83,7 @@
         .enter().append("g")
         .attr("class", "member");
 
+
     member.append("path")
         .attr("class", "line")
         .attr("d", function(d) { return line(d.values); })
@@ -93,13 +94,15 @@
         .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.messages) + ")"; })
         .attr("x", 6)
         .attr("dy", ".35em")
-        .text(function(d) { return d.name; });
+        .text(function(d) { return d.name.split(" ")[0]; });
+
+
   });
 
 function updateData(value) {
   // svg = d3.select("#distribution-graph").transition();
   //     member.exit().remove();
-  d3.csv(filename3, function(error, data) {
+  d3.csv(filename, function(error, data) {
     if (error) throw error;
     
     color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date";}));
