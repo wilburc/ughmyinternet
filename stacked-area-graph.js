@@ -22,6 +22,14 @@
   var yAxis = d3.svg.axis()
       .scale(y)
       .orient("left");
+  var area = d3.svg.area()
+      .interpolate("basis")
+      .x(function(d) { return x(d.date); })
+      .y0(function(d) { return y(d.y0); })
+      .y1(function(d) { return y(d.y0 + d.y); });
+
+  var stack = d3.layout.stack()
+      .values(function(d) { return d.values; });
 
   var line = d3.svg.line()
       .interpolate("basis") //remove this if you want the actual values to be shown. 
@@ -74,20 +82,27 @@
       d.date = parseDate(d.date);
     });
 
-    var members = color.domain().map(function(name) {
+    // var members = color.domain().map(function(name) {
+    //   return {
+    //     name: name,
+    //     values: data.map(function(d) {
+    //       return {date: d.date, messages: +d[name]};
+    //     })
+    //   };
+    // });
+    var members = stack(color.domain().map(function(name) {
       return {
         name: name,
         values: data.map(function(d) {
-          return {date: d.date, messages: +d[name]};
+          return {date: d.date, messages: parseInt(d[name]), y: parseInt(d[name])};
         })
       };
-    });
+    }));
     console.log(members);
     x.domain(d3.extent(data, function(d) { return d.date; }));
 
     y.domain([
-      d3.min(members, function(c) { return d3.min(c.values, function(v) { return v.messages; }); }),
-      d3.max(members, function(c) { return d3.max(c.values, function(v) { return v.messages; }); })
+      0,3000
     ]);
 
     svg.append("g")
@@ -112,9 +127,9 @@
 
 
     member.append("path")
-        .attr("class", "line")
-        .attr("d", function(d) { return line(d.values); })
-        .style("stroke", function(d) { return color(d.name); });
+        .attr("class", "area")
+        .attr("d", function(d) { return area(d.values); })
+        .style("fill", function(d) { return color(d.name); });
 
     member.append("text")
         .attr("class","name")
@@ -141,15 +156,14 @@ function updateData(value) {
       d.date = parseDate(d.date);
 
     });
-    var members = color.domain().map(function(name) {
+    var members = stack(color.domain().map(function(name) {
       return {
-        name: name,
-        values: data.map(function(d) {
+        name : name,
+        values: data.map(function(d){
           return {date: d.date, messages: +d[name]};
         })
-
-      }
-    });
+      };
+    }));
     console.log(members);
     if (value == 'individual') {
       members = members.filter(function(key) { return key.name !== "total";});
