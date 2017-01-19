@@ -30,6 +30,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src='jquery-csv-master/src/jquery.csv.min.js'></script>
+  <script src='papaparse.min.js'></script>
   <!--<script src="d3.legend.js"></script>-->
 
 
@@ -91,13 +93,13 @@
           </h5>
         </div> -->
         <div class='text-centered'>
-          <p> As of <b><span class='last-updated'></span></b>, there have been <b><span class='message-count'></span> messages</b> by <b><span class='member-count'></span> people</b> over <b><span class='day-count'></span> days</b>. That averages out to <b><span class='daily-average'></span> messages</b> per day. I don’t know about <i>your</i> group chats, but that’s pretty &#x1F525;&#x1F525;&#x1F525;.
+          <p> As of <b><span id='last-updated'></span></b>, there have been <b><span id='message-count'></span> messages</b> by <b><span id='member-count'></span> people</b> over <b><span id='day-count'></span> days</b>. That averages out to <b><span id='daily-average'></span> messages</b> per day. I don’t know about <i>your</i> group chats, but that’s pretty &#x1F525;&#x1F525;&#x1F525;.
           </p>
           <p>
            …needless to say, most of it is spam.
           </p>
         </div>
-        <script type="text/javascript" src="jquery-csv-master/src/jquery.csv.js">
+        <script type="text/javascript" src="stat-values.js">
         </script>
         <div class='row image'>
           <div class='one-third column'>
