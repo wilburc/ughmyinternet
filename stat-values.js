@@ -1,3 +1,6 @@
+// calculate summary statistics regarding 
+// message count and stuff. 
+
 function summaryStats(data){
   // latest date (date property of last object)
   var latest_date = data[data.length - 1]['date']
@@ -5,7 +8,7 @@ function summaryStats(data){
   // # of messages
   var message_count = 0;
   for (var i = 0; i < data.length; i++){
-    message_count = message_count + data[i]['total']
+    message_count = message_count + data[i]['Total']
   }
   var message_count_str = message_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 

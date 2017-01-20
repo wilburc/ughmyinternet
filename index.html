@@ -28,10 +28,9 @@
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="files/d3.v4.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src='jquery-csv-master/src/jquery.csv.min.js'></script>
-  <script src='papaparse.min.js'></script>
+  <script src='files/papaparse.min.js'></script>
   <!--<script src="d3.legend.js"></script>-->
 
 
@@ -67,31 +66,6 @@
       <div class='text-centered'>
         <h2>1. Is the group chat lit &#x1F525;?</h2>
       </div>
-      <!-- <div class='row stat-row'>
-        <div class='one-third column stat'>
-          <h2 class='stat-value message-count'> 
-            
-          </h2>
-          <h5 class='stat-description'>
-            Messages
-          </h5>
-        </div>
-        <div class='one-third column stat'>
-          <h2 class='stat-value day-count'> 
-            
-          </h2>
-          <h5 class='stat-description'>
-            Days
-          </h5>
-        </div>
-        <div class='one-third column stat'>
-          <h2 class='stat-value member-count'> 
-            
-          </h2>
-          <h5 class='stat-description'>
-            Members
-          </h5>
-        </div> -->
         <div class='text-centered'>
           <p> As of <b><span id='last-updated'></span></b>, there have been <b><span id='message-count'></span> messages</b> by <b><span id='member-count'></span> people</b> over <b><span id='day-count'></span> days</b>. That averages out to <b><span id='daily-average'></span> messages</b> per day. I don’t know about <i>your</i> group chats, but that’s pretty &#x1F525;&#x1F525;&#x1F525;.
           </p>
@@ -118,14 +92,13 @@
   </div>
 
   <div class='section year'>
-  <!-- 2. during the year? who did how many? -->
     <div class='container'>
       <div class='text-centered'>
         <h2>
          2. Has it always been &#x1F525; tho
         </h2>
         <p>
-          Starting from that fateful July day, the group chat has represented every aspect of our lives—our petty complaints, our angry rants, and the occasional tirade.
+          <span id='daily-average'></span> sounds like a lot.
         </p>
         <p>
           But there were simpler times, back when we were all just enjoying each other’s virtual presence. Everyone was equally active, having things going on and real conversations. “ugh my internet” has grown so much since then. It’s become an incredibly meta cesspool of nonsense. Where did it all go wrong?
@@ -134,9 +107,8 @@
      </div>
      <div class='container'>
       <select class="four columns u-pull-right" id="graphSelect" onchange=updateData(this.value);>
-        <option value="individual">Individual Distributions</option>
-        <option value="total">Total</option>
-        <option value="all">Individual + Total</option>
+        <option value="individual">Individual</option>
+        <option value="total">Sum</option>
       </select>
     </div>
     <div id='distribution-graph' class='graph'>
@@ -161,11 +133,11 @@
 
   <div class='section day'>
   <!-- 3. what’s it like during the day? am vs pm?-->
-    <div class='container'>
+<!--     <div class='container'>
       <div class='text-centered'>
         <h2>
           3. u had 2 b there
-        </h2>
+        </h2> -->
       <!--   <p>
           A group chat isn’t <i>really</i> a group chat without its own inside jokes, .GIFs, or whatevers. Sadly, Facebook’s data thing doesn’t save non-text messages (this would be really useful, just saying, <i>Zuck</i>)—but we <i>can</i> try finding some unique phrases or general nonsense.
         </p>
@@ -173,13 +145,13 @@
           <a href='https://en.wikipedia.org/wiki/Bigram'>Bigrams</a> are pairs of (in this case) words that appear next to each other often. Well, they don’t have to occur <i>often</i>, as long as they’re together when they do. So think “Hong Kong,” “okie dokie,” but not “coffee cup,” because both “coffee” and “cup” are fairly common on their own. Identifying bigrams in the group chat corpus is is one way to more-or-less isolate esoteric phrases from common conversation.
         </p> -->
         
-        <p>
+<!--         <p>
           
         </p>
       
       </div>
     </div>
-  
+   -->
   </div>
 
   <div class='section words'>

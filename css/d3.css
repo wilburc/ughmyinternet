@@ -3,7 +3,7 @@
 }
 path { 
   stroke: steelblue;
-  stroke-width: 1.5;
+  stroke-width: 1.3;
   fill: none;
 }
 
@@ -27,6 +27,11 @@ path3 {
 .axis line {
 	fill: none;
 	stroke: grey;
-	stroke-width: 1;
-	shape-rendering: crispEdges;
+	stroke-width: 0.5;
+	/*shape-rendering: crispEdges;*/
+}
+
+.name{
+  font-weight:300;
+  font-style:normal;
 }
