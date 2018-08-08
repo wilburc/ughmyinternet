@@ -1,0 +1,96 @@
+/* General 
+___________________________*/
+
+body,
+html {
+  height: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  width: 100%; }
+
+header{
+	margin:20px 0px;
+}
+
+footer{
+	margin:20px 0px 0px 0px;
+	bottom:0;
+}
+section{
+	width: 100%;
+	margin: 5% auto; 
+	}
+
+img{
+	display:block;
+	margin:10% auto;
+
+}
+/* Type
+-–––––––––––––––––––––––––––*/
+
+html{
+	font-size: 62.5%; }
+
+body{
+	background-color:#ffffff;
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 1.6;
+	font-family: "brevia", Helvetica, sans-serif; }
+
+p{
+	color: #5d5d5d;
+	font-size: 1.6rem; 
+	line-height: 1.7;
+	/*font-family: 'essonnes-text', Georgia, serif;*/
+	font-family: "brevia", Helvetica, sans-serif;
+	}
+
+a{
+	transition: color 0.3s ease;
+	-webkit-transition: color 0.3s ease;
+	-moz-transition: color 0.3s ease;
+	-o-transition: color 0.3s ease;
+	/*color: #f17de5;*/
+	/*color: #d65bca;*/
+	color: #D684CC;
+	text-decoration:none;
+	font-weight:500;
+}
+
+a:hover{
+	/*color: #d65bca;*/
+	color: #f17de5;
+}
+
+.text{
+	margin: 0 auto;
+}
+
+small{
+	width:100%;
+	font-size: 1.5rem;
+	text-align:center;
+	margin: 0 auto;
+}
+
+/* specific but not really specific things
+–––––––––––––––––––––––––––––––*/
+@media only screen and (min-width: 720px) {  /* 45em */
+	.title{
+		text-align:right;
+	}
+	.text{
+		padding: 0 60px;
+	}
+}
+
+@media only screen and (max-width: 719px) {
+	.filler{
+		display:none;
+	}
+}
+

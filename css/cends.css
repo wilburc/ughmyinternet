@@ -1,0 +1,177 @@
+/*- 
+|   
+| Centro Data Science	  
+|
+-*/
+/* Table of Contents
+___________________________
+- General
+- Grid
+- Controls
+- Typography
+- Tables
+- Colors
+*/
+/* General 
+___________________________*/
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);*/
+body,
+html {
+  height: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  width: 100%; }
+
+/* Grid
+__________________________*/
+.container, .container.full {
+  box-sizing: border-box;
+  height: auto;
+  overflow: visible;
+  margin: 0 auto;
+  /*min-height: 100%;*/
+  /*padding: 0 20px;*/
+  width: 100%; }
+
+.container:not(.full) {
+  max-width: 960px; }
+
+.container.full {
+  max-width: 1920px; }
+
+.row {
+  position: relative;
+  width: 100%; }
+
+.row [class^="col"] {
+  float: left;
+  margin: 0.5rem 2%; }
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.col-1 {
+  width: 4.3333333333%; }
+
+.col-2 {
+  width: 12.6666666667%; }
+
+.col-3 {
+  width: 21%; }
+
+.col-4 {
+  width: 29.3333333333%; }
+
+.col-5 {
+  width: 37.6666666667%; }
+
+.col-6 {
+  width: 46%; }
+
+.col-7 {
+  width: 54.3333333333%; }
+
+.col-8 {
+  width: 62.6666666667%; }
+
+.col-9 {
+  width: 71%; }
+
+.col-10 {
+  width: 79.3333333333%; }
+
+.col-11 {
+  width: 87.6666666667%; }
+
+.col-12 {
+  width: 96%; }
+
+.filler {
+  visibility: hidden; }
+
+/* Typography
+__________________________
+- Base
+- Headers
+- Paragraphs
+- Other
+*/
+/* 10px */
+html {
+  font-size: 62.5%; }
+
+body {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.5;
+  /*font-family: "Open Sans", Helvetica, sans-serif; }*/
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin-bottom: 2rem; }
+
+h1 {
+  font-size: 4.235801032rem; }
+
+h2 {
+  font-size: 2.617924rem; }
+
+h3 {
+  font-size: 1.618; }
+
+h4 {
+  font-size: 1rem; }
+
+/* Controls
+__________________________
+- Select
+- Input 
+- Radio
+- Checkbox
+- Buttons
+*/
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+input[type="submit"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px;
+  /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 3px;
+  box-shadow: none;
+  box-sizing: border-box; }
+
+button {
+  background-color: white;
+  border: 1px solid #6f6f6f;
+  border-radius: 6px;
+  white-space: nowrap; }
+
+/* Tables
+__________________________
+*/
+table {
+  border: 1px solid black; }
+
+td, th {
+  border: 1px solid gray; }
+
+/* Utility
+__________________________
+*/
+.float-right {
+  float: right; }
+
+/*# sourceMappingURL=cends.css.map */

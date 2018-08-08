@@ -1,0 +1,83 @@
+/* Niddy Griddy
+____________________________*/ 
+
+.container, .container.full {
+  box-sizing: border-box;
+  height: auto;
+  overflow: visible;
+  margin: 0 auto;
+  width: 100%; }
+
+.container:not(.full) {
+  max-width: 850px; }
+
+.container.full {
+  max-width: 1920px; }
+
+.row {
+  position: relative;
+  width: 98%; }
+
+.row [class^="col"] {
+  float: left;
+  margin: 0.5rem 2%; }
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12{
+	width: 96%; }
+
+@media only screen and (min-width: 720px) {  /* 45em */
+	.col-1 {
+	  width: 4.3333333333%; }
+
+	.col-2 {
+	  width: 12.6666666667%; }
+
+	.col-3 {
+	  width: 21%; }
+
+	.col-4 {
+	  width: 29.3333333333%; }
+
+	.col-5 {
+	  width: 37.6666666667%; }
+
+	.col-6 {
+	  width: 46%; }
+
+	.col-7 {
+	  width: 54.3333333333%; }
+
+	.col-8 {
+	  width: 62.6666666667%; }
+
+	.col-9 {
+	  width: 71%; }
+
+	.col-10 {
+	  width: 79.3333333333%; }
+
+	.col-11 {
+	  width: 87.6666666667%; }
+
+	.col-12 {
+	  width: 96%; }
+}
+
+.filler {
+  visibility: hidden; }
