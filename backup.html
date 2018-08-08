@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Messenger analysis/visualization</title>
+  <meta name="description" content="">
+  <meta name="author" content="Wilbur Chen">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Font
+   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://use.typekit.net/hhr6jvh.css">
+
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/griddy.css">
+  <link rel="stylesheet" href="css/fbda.css">
+  <link rel="stylesheet" href="../css/jupyter_notebook.css">
+  <link rel="stylesheet" href="../files/zoom.js-master/css/zoom.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="../files/d3/d3.v4.min.js"></script>
+  <script src="../files/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../files/zoom.js-master/js/zoom.js"></script>
+  <script src="../files/zoom.js-master/js/transition.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../files/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->  
+  <div class='container'>
+    <section class='intro'>
+      <div class='row'>
+        <div class='col-12'>
+          <h1>
+            Analyzing/Visualizing Messenger Data
+          </h1>
+          <p>
+            As a certified Millennial™, I can claim with a high degree of certainty that a large percentage of my communication is typed by my own fingers as opposed to spoken out loud by my own mouth. I can’t help that I type faster than I talk!!!
+          </p>
+          <p>
+            Us card-holding Millennials™ are patently self-obsessed and love to examine our own physical and digital presences. We all know that Facebook collects and uses our data to uncover our deepest desires, but it is slightly less-known that they let us <a href="https://www.facebook.com/settings" target='blank'>download some of our data</a>.
+          </p>
+          <h2> 
+            But why
+          </h2>
+          <p> 
+            Group chats have become a cultural phenomenon at this point—<i>*insert when the group chat is lit meme here*</i>. But we’re always focused on <i>when</i> the group chat is lit. No one ever asks <i>how</i> lit? Or who is fanning the flames of lit-ness? 
+          </p>
+          <p> 
+            To prove myself right (that is indeed me that is the most talkative, among other things), I set out to uncover a few things about my most active group chat.
+          </p>
+          <ol>
+            <li>
+              How lit is the group chat?
+            </li>
+            <li>
+              Who contributes the most?
+            </li>
+            <li>
+              When is the group chat lit?
+            </li>
+          </ol>
+          <h2>
+            0. Cleaning this dirty data
+          </h2>
+          <p>
+            Facebook’s data dump is in a fairly user-friendly format if you want to open their HTML files in your browser and <i>read</i> everything. To get it into a more machine-friendly .csv format, there is some wrangling that needs to be done. Luckily, I’ve done that and you can follow along here.
+          </p>
+          <h2>
+            1. How lit is the group chat?
+          </h2>
+          <p>
+              It’s pretty simple to calculate how many messages have been sent in the chat using the <code>datecounts.csv</code> generated in step 0.
+          </p>
+          <!--start nb markup-->
+          <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="n">datecounts_file</span> <span class="o">=</span> <span class="s">&#39;datecounts.csv&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">datecounts_file</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+          <!--end nb markup-->
+          <!--nb markup 2-->
+          <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">total_messages</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">&#39;Total&#39;</span><span class="p">])</span>
+<span class="n">days</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">average_messages</span> <span class="o">=</span> <span class="n">total_messages</span><span class="o">/</span><span class="n">days</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">print</span> <span class="s">&#39;Between {0} and {1}, there were:&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span><span class="n">end_date</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&#39;{0:,} messages over {1:,} days&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total_messages</span><span class="p">,</span><span class="n">days</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&#39;An average of {0:,.0f} messages a day&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">average_messages</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Between 2015-07-02 and 2018-01-05, there were:
+455,789 messages over 918 days
+An average of 497 messages a day
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+          <!--end nb markup 2-->
+          <!-- nb markup 3-->
+          <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">&#39;Total&#39;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span><span class="mi">12</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+          <!--end nb markup 3-->
+          <img style='height: 100%; width: 100%; object-fit: contain' src="files/images/fbda_1.png" data-action="zoom"/>
+          <p>
+            A quick glance at the graph tells us that…<i>something</i> is happening. It’s hard to tell partially because of the long-ass time frame but also because of the erratic discrepancies in message counts between days (I’m sure there’s a statistical term for this). 
+          </p>
+          <h2>
+            Who contributes the most?
+          </h2>
+          <p>
+            It’s cool to see how many messages are in the chat, but that won’t help you win any arguments regarding who is more active (because this is something that normal people talk about). Using the same file, we can dig deeper into how the messages are distributed.
+          </p> 
+          <!--nb markup 4-->
+          <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">members</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="s">&#39;Total&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
+    <span class="n">member_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">member</span><span class="p">])</span>
+    <span class="n">member_percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">member_total</span><span class="o">/</span><span class="n">total_messages</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">member_average</span> <span class="o">=</span> <span class="n">member_total</span><span class="o">/</span><span class="n">days</span>
+    <span class="k">print</span> <span class="s">&#39;{0}: {1:,} total messages ({2:.2f}</span><span class="si">% o</span><span class="s">f total). Daily average: {3:,.0f} messages.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">member</span><span class="p">,</span><span class="n">member_total</span><span class="p">,</span><span class="n">member_percentage</span><span class="p">,</span><span class="n">member_average</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Josh Huang: 189,579 total messages (41.59% of total). Daily average: 207 messages.
+Wilbur Chen: 223,232 total messages (48.98% of total). Daily average: 243 messages.
+Thao Nguyen: 42,978 total messages (9.43% of total). Daily average: 47 messages.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+          <!--end nb markup-->
+          <!-- nb markup 5-->
+          <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+
+<span class="n">legend</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">member</span><span class="p">]))</span>
+    <span class="n">legend</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">member</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">legend</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span><span class="mi">8</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+          <!--end nb markup-->
+          <img style='height: 100%; width: 100%; object-fit: contain' src="files/images/fbda_2.png" data-action="zoom"/>
+          <p>
+            Once again, it’s nice to confirm that I am indeed the one with the least of a life—but the data is still too <i>wild</i> to 
+        </div>
+      </div>
+    </section>
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

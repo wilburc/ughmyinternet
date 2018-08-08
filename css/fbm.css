@@ -1,0 +1,86 @@
+
+/* graph */
+
+.graph{
+  text-align: center;
+}
+.graph *{
+  font-size:1.5rem;
+  font-family: inherit;
+
+}
+path { 
+  /*stroke: steelblue;*/
+  stroke-width: 2;
+  fill: none;
+}
+.axis path,
+.axis line{
+	fill: none;
+	/*stroke: grey;*/
+	stroke-width: 1;
+  /*opacity:0;*/
+  stroke: #e0e0e0;
+	shape-rendering: crispEdges;
+}
+.axis text{
+  fill:#777777;
+}
+/*.axis path{
+  opacity: 0;
+}*/
+
+.name{
+  font-weight:300;
+  font-style:normal;
+}
+
+.caption{
+  width:100%;
+  text-align:center;
+  font-style:italic;
+  color:#8e8e8e;
+}
+.caption small{
+  width:100%;
+}
+
+.spotlight{
+  text-align:center;
+  padding: 20px 0;
+}
+select {
+  font-size: inherit;
+  height: 38px;
+  padding: 6px 10px;
+  /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 3px;
+  box-shadow: none;
+  box-sizing: border-box; }
+
+.toolTip {
+  position: absolute;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid #b3b3b3;
+  box-shadow: 1px 1px 1px #b3b3b3;
+  padding: 14px;
+  text-align: left;
+}
+
+.float-right{
+  float:right;
+}
+
+.wb-control{
+  height:40px;
+  line-height:40px;
+}
+.select-container{
+  /*border-bottom: 2px solid #000000;*/
+  margin:0px 10px;
+}

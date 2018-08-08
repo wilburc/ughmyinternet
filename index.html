@@ -5,162 +5,196 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>ugh, my internet</title>
+  <title>Messenger analysis/visualization</title>
   <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="author" content="Wilbur Chen">
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Font
+   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://use.typekit.net/hhr6jvh.css">
 
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="https://use.typekit.net/twe1tle.js"></script>
-  <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="/Skeleton-2.0.4 4/css/normalize.css">
-  <link rel="stylesheet" href="/Skeleton-2.0.4 4/css/skeleton.css">
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/css/d3.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/griddy.css">
+  <!-- <link rel="stylesheet" href="../css/cends.css"> -->
+  <!-- <link rel="stylesheet" href="css/fbda.css"> -->
+  <link rel="stylesheet" href="css/fbm.css">
+  <link rel="stylesheet" href="../css/jupyter_notebook.css">
+  <link rel="stylesheet" href="../files/zoom.js-master/css/zoom.css">
 
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="files/d3.v4.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src='files/papaparse.min.js'></script>
-  <!--<script src="d3.legend.js"></script>-->
-
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="../files/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../files/zoom.js-master/js/zoom.js"></script>
+  <script src="../files/zoom.js-master/js/transition.js"></script>
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="../../dist/images/favicon.png">
+  <link rel="icon" type="image/png" href="../files/favicon.png">
 
 </head>
 <body>
 
   <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-  <div class='section intro'> 
-  <!-- 1. who what where when why -->
-    <div class='container'>
-      
-      <div class='text-centered'>
-        <h1>ugh, my internet.</h1>
-        <p>
-          The summer of 2015 saw graduation and/or new jobs for some of us. This change meant we were all moving away from the sterile suburbs of Irvine for yellower pastures—and given that none of us made any new friends, the resulting group chat is all we had, really.
-        </p>
-        <p>
-          For me in particular, the summer also brought the cruel wrath of the internet gods, rendering me helpless for 46 days and 45 nights, watering the lifeless router with my tears. Thus, the group chat “ugh my internet” was born. While the moniker has long been changed to something infinitely better and funnier, “ugh my internet” remains a classic reference to that dreadful summer, and ultimately to the millennial’s eternal struggle in dealing with the internet and all it has to offer. Also, I thought the URL <a href="">ughmyinter.net</a> was genius and happened to have $12 in <a href='http://google.com/domains'>Google Domains</a> credits. 
-        </p>
-        <p>
-          To no one’s surprise, Facebook keeps pretty much all of your information—including every conversation you’ve ever had. To <i>some</i> people’s surprise, it’s actually <a href='https://www.facebook.com/dyi?x=Adlpa-5IQm3z4Fey'>available for you to download</a>. Combining my obsession with making meaningless things out of meaningful data, and a genuine curiosity in how “lit” the group chat was, I knew exactly what this beautiful URL was destined for.
-        </p>
-        
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->  
+  <div class='container'>
+    <header class='row'>
+      <div class='col-12'>
+        <a href='/'>Home</a>
       </div>
-    </div>
-    <div class='container'>
-      <div class='text-centered'>
-        <h2>1. Is the group chat lit &#x1F525;?</h2>
-      </div>
-        <div class='text-centered'>
-          <p> As of <b><span id='last-updated'></span></b>, there have been <b><span id='message-count'></span> messages</b> by <b><span id='member-count'></span> people</b> over <b><span id='day-count'></span> days</b>. That averages out to <b><span id='daily-average'></span> messages</b> per day. I don’t know about <i>your</i> group chats, but that’s pretty &#x1F525;&#x1F525;&#x1F525;.
+    </header>
+  </div>
+  <div class='container'>
+    <section class='intro'>
+      <div class='row'>
+        <div class='col-12'>
+          <h1>
+            Analyzing/Visualizing Messenger Data
+          </h1>
+          <p>
+            Us card-holding Millennials™ are no strangers to the cultural phenomenon known as the “group chat.” Overwhelming social anxiety combined with unwillingness to go outside and the pressure to maintain some form of social interaction result in these chatrooms effectively replacing real life conversation. 
           </p>
           <p>
-           …needless to say, most of it is spam.
+            The most meme-worthy and viral offspring of “the group chat” is, of course,
+          </p>
+          <div class='spotlight'>
+            <h2>
+              when the group chat lit &#x1F525;&#x1F525;&#x1F525;
+            </h2>
+          </div>
+          <img src='https://media.giphy.com/media/dSpoer2rvdoTC/giphy.gif'/>
+          <p>
+            But no one ever asks…
+          </p>
+          <div class='spotlight'>
+            <h2>
+              <i>when</i> the group chat lit &#x1F525;&#x1F525;&#x1F525;?
+            </h2> 
+          </div>
+          <img src='https://media.giphy.com/media/26gR0YFZxWbnUPtMA/giphy.gif'/>
+          <p>
+            The “lit-ness” of a group chat is generally represented by furious typing, suggesting a high volume of messages being sent in the chat. For more memes described, feel free to email me.
+          </p>
+          <p>
+            I took the data from my most active group chat (which, funnily enough, is actually just 3 people, one of whom rarely shows up) and plotted the daily message count to see if there was anything interesting. Note that it takes some work to get the data into the form we want. Luckily, I’ve included my python notebook <a href='https://nbviewer.jupyter.org/github/wilburc/wilburc.github.io/blob/master/fbm_data/files/fb_dump_get_messages.ipynb' target='blank'>here</a>. 
           </p>
         </div>
-        <script type="text/javascript" src="stat-values.js">
-        </script>
-        <div class='row image'>
-          <div class='one-third column'>
-            <img src='files/wtf2.jpg' />
+      </div>
+    </div>
+    <div class='container full'>
+      <div id='datecounts_total' class='graph'></div>
+      <script type='text/javascript' src='js/datecounts_total.js'></script> 
+    </div>
+    <div class='caption'>
+      <small>Number of messages per day. November 2017 day wasn’t included in my FB data download for some reason. <a href='https://github.com/wilburc/wilburc.github.io/blob/master/fbm_data/js/datecounts_total.js' target='blank'>Code</a></small>
+    </div>
+    <section>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-12'>
+            <p>
+              Ignoring the lack of November 2017 data (not sure what happened there, <i><b>Zuck</b></i>), it’s… pretty lit if I say so myself. The numbers are consistently high, especially considering the fact that this group chat is really just 2 active people. We sure know how to have a good time. 
+            </p>
+            <p>
+              Apart from looking into which catastrophic life-events corresponded to the 3 most active days, there isn’t much to do with this. Knowing that the weekends probably account for the sharp drops in messages, each week seems more or less the same.
+            </p>
           </div>
-          <div class='one-third column'>
-            <img src='files/wtf1.jpg' />
+        </div>
+      </div>
+    </section>
+    <div class='container'>
+      <div id='weekly_breakdown_controls'>
+        <div class='float-right'>
+          <div class='select-container float-right'>
+            <select onchange='updateWeeklyBreakdownGraph();' class='wb-control' id='wb_select_timeframe'>
+              <option selected='Daily + Hourly' value='Day + Hour'>
+                Hourly/Daily
+              </option>
+              <option value='Day'>
+                Daily
+              </option>
+              <option value='Hour'>
+                Hourly
+              </option>
+            </select>
           </div>
-          <div class='one-third column'>
-            <img src='files/wtf3.jpg' />
+          <span class='wb-control float-right'>
+            messages
+          </span>
+          <div class='select-container float-right'>
+            <select onchange='updateWeeklyBreakdownGraph();' class='wb-control' id='wb_select_metric'>
+              <option selected='selected' value='Average'>Average</option>
+              <option value='Median'>
+                Median
+              </option>
+              <option value='Total'>
+                Total
+              </option>
+            </select>
           </div>
-
+          
         </div>
       </div>
     </div>
-  </div>
-
-  <div class='section year'>
-    <div class='container'>
-      <div class='text-centered'>
-        <h2>
-         2. Has it always been &#x1F525; tho
-        </h2>
-        <p>
-          <span id='daily-average'></span> sounds like a lot.
-        </p>
-        <p>
-          But there were simpler times, back when we were all just enjoying each other’s virtual presence. Everyone was equally active, having things going on and real conversations. “ugh my internet” has grown so much since then. It’s become an incredibly meta cesspool of nonsense. Where did it all go wrong?
-        </p>
+    <div class='container full'>
+      <div id='weekly_breakdown' class='graph'>
       </div>
-     </div>
-     <div class='container'>
-      <select class="four columns u-pull-right" id="graphSelect" onchange=updateData(this.value);>
-        <option value="individual">Individual</option>
-        <option value="total">Sum</option>
-      </select>
+      <script type='text/javascript' src='js/weekly_breakdown.js'></script>
     </div>
-    <div id='distribution-graph' class='graph'>
+    <div class='caption'>
+      <small>Various metrics for number of messages. <a href='https://github.com/wilburc/wilburc.github.io/blob/master/fbm_data/js/weekly_breakdown.js' target='blank'>Code</a></small>
     </div>
-    <script type="text/javascript" src="distribution-graph.js">
-    </script>
-    <div class='container'>
-      <div class='text-centered'>
-        <p>
-          The line chart summarizes our story: three friends begin on this adventure, happily talking about their post-college lives. “wilb” complaining about the hour-long commute to downtown Chicago, “thao” complaining about the time-zone differences in her online Vietnamese class, and “josh” complaining about his usual bs. Thao’s class ends in late-August, and she falls back into her old habits of sleeping until 3pm, effectively disappearing forever into perpetuity.
-        </p>
-        <p>
-          Meanwhile, “ugh my internet” escalates into something <i>else</i>. A combination of boredom, delusion, and gossip make for a bustling forum—but only on weekdays. Come Saturday, the chat is deserted. Winter break is similarly represented as a sharp drop in messages, but “ugh my internet” comes back in full force to ring in the new year.
-        </p> 
-        <p>
-          At this point, Thao is like that neighbor who has a copy of your keys and just <i>shows up</i> every once in a while.
-        </p>
+    </section> 
+    <section>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-12'>
+            <p>
+              At the daily level, every weekday is generally around the same, with a slight downward trend as the week progresses— and it’s clear that weekends just aren’t great. This makes sense, as the group chat in question was originally created for workplace comiseration. 
+            </p>
+            <p>
+              Hourly, 10am-noon is clearly “when the group chat is lit &#x1F525;.” This might seem unusual at first, but the morning <i>is</i> when we’re most wired on caffeine and typing at top speeds. It would be interesting to see if this trend dropped when I cut out coffee a few months ago. The next notable trend is the sharp drop every day around 1pm—I mean… I can’t eat my Panda Express <i>and</i> chat at the same time!
+            </p>
+            <p>
+              While the graphs don’t necessarily uncover any groundbreaking insights, it’s fun to see how daily habits and routines are reflected in something as trivial as a group chat.
+            </p>
+            <h2> You probably don’t actually care about my messaging history </h2>
+            <p> 
+              Apart from the people actually included in this group chat (and even <i>that</i> would be a bit of a stretch), I don’t see why anyone would care about this analysis. However, all the code is available for you to do this yourself, so have at it! 
+            </p>
+            <ul>
+              <li><a href='https://nbviewer.jupyter.org/github/wilburc/wilburc.github.io/blob/master/fbm_data/files/fb_dump_get_messages.ipynb' target='blank'>Wranglin’ the data</a></li>
+              <li><a href='https://github.com/wilburc/wilburc.github.io/blob/master/fbm_data/js/datecounts.js' target='blank'>Graph 1 (Message-count time series)</a></li>
+              <li><a href='https://github.com/wilburc/wilburc.github.io/blob/master/fbm_data/js/weekly_breakdown.js' target='blank'>Graph 2 (the other one) </a></li>
+            </ul>
+            <p>
+              Thanks for reading and have a GREAT day.  
+            </p>
+            <p>
+              - Wilbur
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-   
-  </div>
-
-  <div class='section day'>
-  <!-- 3. what’s it like during the day? am vs pm?-->
-<!--     <div class='container'>
-      <div class='text-centered'>
-        <h2>
-          3. u had 2 b there
-        </h2> -->
-      <!--   <p>
-          A group chat isn’t <i>really</i> a group chat without its own inside jokes, .GIFs, or whatevers. Sadly, Facebook’s data thing doesn’t save non-text messages (this would be really useful, just saying, <i>Zuck</i>)—but we <i>can</i> try finding some unique phrases or general nonsense.
-        </p>
-        <p>
-          <a href='https://en.wikipedia.org/wiki/Bigram'>Bigrams</a> are pairs of (in this case) words that appear next to each other often. Well, they don’t have to occur <i>often</i>, as long as they’re together when they do. So think “Hong Kong,” “okie dokie,” but not “coffee cup,” because both “coffee” and “cup” are fairly common on their own. Identifying bigrams in the group chat corpus is is one way to more-or-less isolate esoteric phrases from common conversation.
-        </p> -->
-        
-<!--         <p>
-          
-        </p>
-      
+    </section>
+    <section>
+      <div class='container'>
+        <div class='row'>
+          <small>
+            Code by yours truly and gifs from <a href='http://giphy.com' target='blank'>Giphy</a>. Last updated Jan 2018.
+          </small>
+        </div>
       </div>
-    </div>
-   -->
+    </section>
   </div>
-
-  <div class='section words'>
-  <!-- 4. what’s the chat like? what words are used the most? trends? -->
-  </div>
-
-
-
-
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
